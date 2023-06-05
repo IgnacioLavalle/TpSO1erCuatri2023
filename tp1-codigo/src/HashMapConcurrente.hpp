@@ -1,11 +1,11 @@
 #ifndef HMC_HPP
 #define HMC_HPP
 
-#include <mutex>
-#include <array>
 #include <atomic>
 #include <string>
 #include <vector>
+#include <mutex>
+
 #include "ListaAtomica.hpp"
 
 typedef std::pair<std::string, unsigned int> hashMapPair;
@@ -28,17 +28,17 @@ class HashMapConcurrente {
 
     void buscarMaximoThread(std::atomic<int>* actual, hashMapPair *maximoActual, std::mutex *mtx_maximo);
 
-    hashMapPair maximoLista(int indice) ;
+    hashMapPair maximoLista(int indice);
 
  private:
-
+    
     ListaAtomica<hashMapPair> *tabla[HashMapConcurrente::cantLetras];
-
-    std::mutex mutexes[HashMapConcurrente::cantLetras];
 
     static unsigned int hashIndex(std::string clave);
 
-    void incrementarEnLista(ListaAtomica<hashMapPair> *lista, std::string clave);
+    std::mutex mutexes[HashMapConcurrente::cantLetras];
+
+    void incrementarEnLista(ListaAtomica<hashMapPair>* lista, std::string clave);
 };
 
 #endif  /* HMC_HPP */

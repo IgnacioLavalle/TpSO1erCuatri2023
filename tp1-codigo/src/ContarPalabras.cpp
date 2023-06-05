@@ -26,9 +26,20 @@ int main(int argc, char **argv) {
         filePaths.push_back(argv[i]);
     }
 
-    HashMapConcurrente hashMap = HashMapConcurrente();
+    HashMapConcurrente hashMap{}; // = HashMapConcurrente();
+    std::chrono::time_point<std::chrono::system_clock> startArchivos, endArchivos;
+    startArchivos = std::chrono::system_clock::now();
     cargarMultiplesArchivos(hashMap, cantThreadsLectura, filePaths);
+    endArchivos = std::chrono::system_clock::now();
+    std::chrono::duration<double> tiempoArchivos = endArchivos - startArchivos;
+    printf( "%lf ", tiempoArchivos.count());
+
+    std::chrono::time_point<std::chrono::system_clock> startMax, endMax;
+    startMax = std::chrono::system_clock::now();
     auto maximo = hashMap.maximoParalelo(cantThreadsMaximo);
+    endMax = std::chrono::system_clock::now();
+    std::chrono::duration<double> tiempoMax = endMax - startMax;
+    printf( "%lf ", tiempoMax.count());
 
     std::cout << maximo.first << " " << maximo.second << std::endl;
 

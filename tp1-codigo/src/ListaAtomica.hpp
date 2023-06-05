@@ -28,8 +28,8 @@ class ListaAtomica {
         }
     }
 
-    // EJERCICIO 1
     void insertar(const T &valor) {
+        // Completar (Ejercicio 1)
         Nodo* nuevaCabeza =  new Nodo(valor);
         nuevaCabeza->_siguiente = _cabeza.load();
         while (!(_cabeza.compare_exchange_weak(nuevaCabeza->_siguiente, nuevaCabeza)));
@@ -69,9 +69,7 @@ class ListaAtomica {
         Iterador(ListaAtomica<T> *lista, typename ListaAtomica<T>::Nodo *sig)
             : _lista(lista), _nodo_sig(sig) {}
 
-        friend typename ListaAtomica<T>::Iterador ListaAtomica<T>::begin();
-        friend typename ListaAtomica<T>::Iterador ListaAtomica<T>::end();
-
+        friend typename ListaAtomica<T>::Iterador ListaAtomica<T>::crearIt();
 
      public:
         Iterador() : _lista(nullptr), _nodo_sig(nullptr) {}
@@ -100,12 +98,8 @@ class ListaAtomica {
         }
     };
 
-    Iterador begin() { 
-        return iterator(this, _cabeza);
-    }
-
-    Iterador end() { 
-        return iterator(this, nullptr);
+    Iterador crearIt() {
+        return Iterador(this, _cabeza);
     }
 };
 

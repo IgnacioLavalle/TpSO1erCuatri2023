@@ -33,3 +33,11 @@
   verificando algunos aspectos básicos del funcionamiento del código.
   **No evalúan aspectos de concurrencia** y por lo tanto no brindan ninguna
   garantía de que el código escrito sea correcto.
+
+## Experimentacion
+* Para el experimento 2, se debe ejecutar primero `make sandbox`, que compila una version
+  calcula el promedio de correr 5 veces el maximo, sin tener que volver a cargar los archivos
+  en la tablahash. Luego se debe correr el archivo `experimento2.py`, ubicado en la carpeta 
+  experimentacion.
+  Para el experimento 3 y 4 solo es necesario hacer `make`.
+  Todos los experimentos devuelven graficos que representan los resultados.

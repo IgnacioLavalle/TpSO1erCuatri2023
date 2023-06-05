@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <pthread.h>
+#include <thread>
 
 #include "HashMapConcurrente.hpp"
 

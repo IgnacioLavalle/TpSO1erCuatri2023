@@ -4,6 +4,14 @@
 #include "../src/ListaAtomica.hpp"
 #include "../src/HashMapConcurrente.hpp"
 #include "../src/CargarArchivos.hpp"
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <thread>
+#include <vector>
+
+using namespace std;
+
 
 // Tests Ejercicio 1
 
@@ -48,6 +56,8 @@ LT_END_TEST(InsertarAgregaEnOrden)
 
 // Tests Ejercicio 2
 
+
+
 LT_BEGIN_SUITE(TestsEjercicio2)
 
 HashMapConcurrente hM;
@@ -75,6 +85,7 @@ LT_BEGIN_TEST(TestsEjercicio2, ValorEsCorrectoTrasUnaInsercion)
     hM.incrementar("tiranosaurio");
     LT_CHECK_EQ(hM.valor("tiranosaurio"), 1);
 LT_END_TEST(ValorEsCorrectoTrasUnaInsercion)
+
 
 LT_BEGIN_TEST(TestsEjercicio2, ClavesEsCorrectoTrasUnaInsercion)
     hM.incrementar("tiranosaurio");
@@ -148,6 +159,7 @@ void tear_down()
 }
 LT_END_SUITE(TestsEjercicio3)
 
+
 LT_BEGIN_TEST(TestsEjercicio3, MaximoEsCorrecto)
     hM.incrementar("tiranosaurio");
     hM.incrementar("tiranosaurio");
@@ -187,6 +199,8 @@ LT_BEGIN_TEST(TestsEjercicio3, MaximoParaleloEsCorrectoDosThreads)
     LT_CHECK_EQ(actual.second, 4);
 LT_END_TEST(MaximoParaleloEsCorrectoDosThreads)
 
+
+
 // Tests Ejercicio 4
 
 LT_BEGIN_SUITE(TestsEjercicio4)
@@ -224,7 +238,9 @@ LT_BEGIN_TEST(TestsEjercicio4, CargarMultiplesArchivosFuncionaDosThreads)
     LT_CHECK_EQ(hM.claves().size(), 12);
 LT_END_TEST(CargarMultiplesArchivosFuncionaDosThreads)
 
+
 // Ejecutar tests
+
 LT_BEGIN_AUTO_TEST_ENV()
     AUTORUN_TESTS()
 LT_END_AUTO_TEST_ENV()
