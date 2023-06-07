@@ -29,7 +29,6 @@ class ListaAtomica {
     }
 
     void insertar(const T &valor) {
-        // Completar (Ejercicio 1)
         Nodo* nuevaCabeza =  new Nodo(valor);
         nuevaCabeza->_siguiente = _cabeza.load();
         while (!(_cabeza.compare_exchange_weak(nuevaCabeza->_siguiente, nuevaCabeza)));

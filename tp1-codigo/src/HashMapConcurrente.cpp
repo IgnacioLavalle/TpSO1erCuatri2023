@@ -30,7 +30,6 @@ void HashMapConcurrente::incrementarEnLista(ListaAtomica<hashMapPair>* lista, st
 }
 
 void HashMapConcurrente::incrementar(std::string clave) {
-    // Completar (Ejercicio 2)
     unsigned int bucketIndex = hashIndex(clave);
     mutexes[bucketIndex].lock();
     incrementarEnLista(tabla[bucketIndex], clave);
@@ -41,7 +40,6 @@ void HashMapConcurrente::incrementar(std::string clave) {
 
 
 std::vector<std::string> HashMapConcurrente::claves() {
-    // Completar (Ejercicio 2)
     std::vector<std::string> claves;
     for (auto bucket: tabla) {
          for(auto element = bucket->crearIt(); element.haySiguiente(); element.avanzar()){
@@ -52,7 +50,6 @@ std::vector<std::string> HashMapConcurrente::claves() {
 }
 
 unsigned int HashMapConcurrente::valor(std::string clave) {
-    // Completar (Ejercicio 2)
     ListaAtomica<hashMapPair>* bucket = tabla[hashIndex(clave)]; // buscamos la lista asociada a esa clave
     for(auto element = bucket->crearIt(); element.haySiguiente(); element.avanzar()){
         if(element.siguiente().first == clave){

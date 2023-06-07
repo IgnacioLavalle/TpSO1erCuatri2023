@@ -33,7 +33,7 @@ def scatterPlot(ejeY, ejeX, color, label,totalThreads):
     plt.scatter(ejeX, ejeY, s=30, alpha=1, color=color)
 
     #plt.yticks(ejeY)
-    plt.xticks(np.arange(0, totalThreads+1, 1.0),fontsize=15)
+    plt.xticks(np.arange(0, totalThreads+1, 5.0),fontsize=15)
     plt.yticks(fontsize=15)
     plt.title(label, fontdict={'size':20})
     plt.xlabel('Cantidad de threads', fontsize=20)
@@ -71,7 +71,7 @@ def generarExperimento2():
 
 def comparar():
    
-    archivos = ["english-words-recortado.txt"]
+    archivos = ["wordset-experimento2-grande.txt"]
     tiempos_max = runSourceCode(5,4,len(archivos), archivos)
     tiempoDatasetGrande = tiempos_max[2];  #tiempo con 3 threads
     
@@ -86,8 +86,8 @@ def comparar():
 
 def experimentar():
 
-    totalThreads = 8 # Elegir el maximo de cantidad de threads
-    archivos = ["wordset-experimento2.txt"] # elegir con que archivo se busca experimentar
+    totalThreads = 40 # Elegir el maximo de cantidad de threads
+    archivos = ["igualCantidadDePalabrasXLetra.txt"] # elegir con que archivo se busca experimentar
     
     tiempos_max = runSourceCode(5,totalThreads,len(archivos), archivos) # devuelve una lista con los tiempos por cantidad de threads
     df = pd.DataFrame(data={
@@ -100,6 +100,7 @@ def experimentar():
 experimentar()
 
 #Auxiliares para plotear y generar archivos
-#comparar()
-#generarArchivo()  
-#generarExperimento2() 
+
+comparar()
+generarArchivo()  
+generarExperimento2() 

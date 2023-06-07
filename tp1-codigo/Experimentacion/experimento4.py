@@ -31,6 +31,7 @@ def scatterPlot(ejeY, ejeX, color, label):
     
     plt.scatter(ejeX, ejeY, s=30, alpha=1, color=color)
 
+    
     plt.xticks(fontsize=15)
     plt.yticks(fontsize=15)
     plt.title(label, fontdict={'size':20})

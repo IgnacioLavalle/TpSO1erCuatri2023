@@ -49,7 +49,7 @@ def experimento_variando_threads():
     tiempos_archivos = []
     tiempos_max = []
     totalThreads = 6
-    threadsLectura = 16
+    threadsLectura = 30
     for threads in range(1,threadsLectura):
         print("Corriendo con ", threads, " threads")
         [tiempo_archivos, tiempo_max] = tprun(threads, totalThreads, 12)
